@@ -1,0 +1,63 @@
+#!/bin/sh -ex
+
+#ensure datafiles (eg. innodb) are created
+/etc/init.d/mysql start
+/etc/init.d/mysql stop
+
+# JPM
+# generate CA certificate
+
+mkdir -p /etc/mosquitto/mqttitude
+(
+	cd /etc/mosquitto/mqttitude
+	/usr/local/mqttitude/repo/tools/TLS/generate-CA.sh
+)
+
+cat > /etc/mosquitto/mosquitto.conf <<!EOFmosquitto
+#(@) mosquitto.conf pre-configured for MQTTitude
+#
+autosave_interval 1800
+
+connection_messages true
+log_dest stderr
+log_dest topic
+log_type error
+log_type warning
+log_type notice
+log_type information
+log_type all
+log_type debug
+log_timestamp true
+
+password_file /etc/mosquitto/mosquitto.pw
+acl_file /etc/mosquitto/mosquitto.acl
+
+persistence true
+persistence_location /var/lib/mosquitto/
+persistence_file mosquitto.db
+persistent_client_expiration 1m
+
+pid_file /var/run/mosquitto.pid
+
+retained_persistence true
+
+listener 1883 127.0.0.1
+
+listener 8883
+tls_version tlsv1
+cafile /etc/mosquitto/mqttitude/ca.crt
+certfile /etc/mosquitto/mqttitude/mqttitude.crt
+keyfile /etc/mosquitto/mqttitude/mqttitude.key
+require_certificate false
+
+!EOFmosquitto
+
+cat > /etc/mosquitto/mosquitto.pw <<!EOFmosquittopw
+!EOFmosquittopw
+chown mosquitto /etc/mosquitto.pw
+chmod 600 /etc/mosquitto.pw
+
+cat > /etc/mosquitto/mosquitto.acl <<!EOFmosquittoacl
+!EOFmosquittoacl
+chown mosquitto /etc/mosquitto.acl
+chmod 600 /etc/mosquitto.acl

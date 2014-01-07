@@ -1,0 +1,34 @@
+#!/bin/bash -ex
+
+[ "$FAB_HTTP_PROXY" ] && export http_proxy="$FAB_HTTP_PROXY"
+
+dl() {
+    [ "$FAB_HTTP_PROXY" ] && PROXY="--proxy $FAB_HTTP_PROXY"
+    cd $2; curl -L -f -O $PROXY $1; cd -
+}
+
+# http://mosquitto.org/2013/01/mosquitto-debian-repository/
+
+curl http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key | apt-key add -
+
+dl http://repo.mosquitto.org/debian/mosquitto-stable.list /etc/apt/sources.list.d/
+
+cat > /etc/apt/sources.list.d/mosquitto-wheezy.list <<!EOFmosq
+deb http://repo.mosquitto.org/debian wheezy main
+!EOFmosq
+
+# Install Mosquitto
+apt-get update
+
+DEBIAN_FRONTEND=noninteractive apt-get --force-yes --assume-yes install \
+	mosquitto \
+	mosquitto-clients \
+	python-mosquitto
+
+easy_install peewee
+easy_install supervisor
+
+# FIXME: install & launch supervisor 
+
+mkdir -p /usr/local/mqttitude/repo
+git clone https://github.com/binarybucks/mqttitude.git /usr/local/mqttitude/repo
