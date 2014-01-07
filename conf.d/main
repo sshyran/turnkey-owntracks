@@ -5,13 +5,11 @@
 /etc/init.d/mysql stop
 
 # JPM
-# generate CA certificate
+# CA certificate/ server cert/key is created in firstboot inithook upon start
 
 mkdir -p /etc/mosquitto/mqttitude
-(
-	cd /etc/mosquitto/mqttitude
-	/usr/local/mqttitude/repo/tools/TLS/generate-CA.sh
-)
+
+
 
 cat > /etc/mosquitto/mosquitto.conf <<!EOFmosquitto
 #(@) mosquitto.conf pre-configured for MQTTitude
@@ -54,10 +52,10 @@ require_certificate false
 
 cat > /etc/mosquitto/mosquitto.pw <<!EOFmosquittopw
 !EOFmosquittopw
-chown mosquitto /etc/mosquitto.pw
-chmod 600 /etc/mosquitto.pw
+chown mosquitto /etc/mosquitto/mosquitto.pw
+chmod 600 /etc/mosquitto/mosquitto.pw
 
 cat > /etc/mosquitto/mosquitto.acl <<!EOFmosquittoacl
 !EOFmosquittoacl
-chown mosquitto /etc/mosquitto.acl
-chmod 600 /etc/mosquitto.acl
+chown mosquitto /etc/mosquitto/mosquitto.acl
+chmod 600 /etc/mosquitto/mosquitto.acl
