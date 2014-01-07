@@ -1,6 +1,10 @@
 #!/bin/bash -e
 # Generate SSL certificate for MQTTitude
 
+echo "* Regenerating TLS keys/cert for MQTTitude"
+
+. /etc/default/inithooks
+
 fatal() {
     echo "fatal: $@" 1>&2
     exit 1
@@ -9,11 +13,10 @@ fatal() {
 # Exit if openssl is not available
 which openssl >/dev/null || fatal "openssl is not installed"
 
-# JPM
 # generate CA certificate
 
 test -d /etc/mosquitto/mqttitude  || mkdir -p /etc/mosquitto/mqttitude
-(
-	cd /etc/mosquitto/mqttitude
-	/usr/local/mqttitude/repo/tools/TLS/generate-CA.sh
-)
+TARGET=/etc/mosquitto/mqttitude  MOSQUITTOUSER=mosquitto /usr/local/mqttitude/repo/tools/TLS/generate-CA.sh mqttitude
+# chown mosquitto /etc/mosquitto/mqttitude/*
+
+sleep 3
