@@ -66,6 +66,8 @@
                         <li><a
                         href="http://www.turnkeylinux.org/lamp">
                         TurnKey LAMP release notes</a></li>
+			<li><a href="http://owntracks.org">
+			OwnTracks home page</a></li>
                     </ul>
 
                 </div>
