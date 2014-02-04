@@ -8,8 +8,9 @@ This is an [OwnTracks](http://owntracks.org) TurnKey-Linux back-end, with the fo
 * m2s back-end is automatically launched via supervisord
 * Mosquitto and m2s logs written to `/var/log/mosquitto/`
 
+![Screenshot](screenshot.png)
+
 ### Bugs
 
 * Yes, many.
-* No easy way of obtaining the CA certificate (required for devices)
 * Irrespective of MySQL password set upon installation, the username and password for `owntracks` database are `a` and `a` respectively.
