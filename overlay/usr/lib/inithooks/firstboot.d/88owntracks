@@ -23,7 +23,6 @@ sleep 3
 
 chown -R mosquitto /var/log/mosquitto/
 
-# Copy default settings and create database schema for m2s
+# Copy default settings for m2s
 
 test -f /usr/local/owntracks/m2s/settings.py || cp /usr/local/owntracks/default/m2s-settings.py /usr/local/owntracks/m2s/settings.py
-cd /usr/local/owntracks/m2s && python dbschema.py
