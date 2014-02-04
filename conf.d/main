@@ -6,6 +6,8 @@ MYSQL="mysql --user=root --password=${MYSQL_PASS} --batch"
 # Prepare MySQL database
 /etc/init.d/mysql start
 
+## FIXME: username/password here is hard-coded into overlay/usr/local/owntracks/m2s/settings.py
+
 $MYSQL --execute "CREATE DATABASE owntracks;"
 $MYSQL --execute "CREATE USER 'a' IDENTIFIED BY 'a';"
 $MYSQL --execute "GRANT ALL on owntracks.* TO 'a';"
@@ -69,3 +71,4 @@ cat > /etc/mosquitto/mosquitto.acl <<!EOFmosquittoacl
 !EOFmosquittoacl
 chown mosquitto /etc/mosquitto/mosquitto.acl
 chmod 600 /etc/mosquitto/mosquitto.acl
+
