@@ -22,3 +22,7 @@ TARGET=/etc/mosquitto/owntracks  MOSQUITTOUSER=mosquitto /usr/local/owntracks/to
 sleep 3
 
 chown -R mosquitto /var/log/mosquitto/
+
+# Create database schema for m2s
+
+cd /usr/local/owntracks/m2s && python dbschema.py
