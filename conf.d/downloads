@@ -25,10 +25,18 @@ DEBIAN_FRONTEND=noninteractive apt-get --force-yes --assume-yes install \
 	mosquitto-clients \
 	python-mosquitto
 
-easy_install peewee
 easy_install supervisor
 
-# FIXME: install & launch supervisor 
+mkdir -p /usr/local/owntracks/repo
+git clone https://github.com/owntracks/backend.git /usr/local/owntracks/repo
+git clone https://github.com/owntracks/tools.git /usr/local/owntracks/repo
+cd /usr/local/owntracks && ln -s repo/m2s m2s
 
-mkdir -p /usr/local/mqttitude/repo
-git clone https://github.com/binarybucks/mqttitude.git /usr/local/mqttitude/repo
+# Get pip
+easy_install pip
+# http://stackoverflow.com/questions/20905350/latest-pip-fails-with-requires-setuptools-0-8-for-dist-info
+pip install setuptools --no-use-wheel --upgrade 
+
+pip install flask-peewee
+
+insserv supervisord

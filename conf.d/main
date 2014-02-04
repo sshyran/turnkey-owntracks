@@ -1,18 +1,27 @@
 #!/bin/sh -ex
 
-#ensure datafiles (eg. innodb) are created
+MYSQL="mysql --user=root --password=${MYSQL_PASS} --batch"
+
+
+# Prepare MySQL database
 /etc/init.d/mysql start
+
+$MYSQL --execute "CREATE DATABASE owntracks;"
+$MYSQL --execute "CREATE USER 'a' IDENTIFIED BY 'a';"
+$MYSQL --execute "GRANT ALL on owntracks.* TO 'a';"
+
+
 /etc/init.d/mysql stop
 
 # JPM
 # CA certificate/ server cert/key is created in firstboot inithook upon start
 
-mkdir -p /etc/mosquitto/mqttitude
+mkdir -p /etc/mosquitto/owntracks
 
 
 
 cat > /etc/mosquitto/mosquitto.conf <<!EOFmosquitto
-#(@) mosquitto.conf pre-configured for MQTTitude
+#(@) mosquitto.conf pre-configured for OwnTracks
 #
 autosave_interval 1800
 
