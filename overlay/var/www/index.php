@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Style-Type" content="text/css">
         <meta http-equiv="Content-Script-Type" content="text/javascript">
 
-        <title>TurnKey LAMP</title>
+        <title>TurnKey OwnTracks</title>
         
         <link rel="stylesheet" href="css/ui.tabs.css" type="text/css" media="print, projection, screen"/>
         <link rel="stylesheet" href="css/base.css" type="text/css"/>
@@ -22,7 +22,7 @@
     </head>
 
     <body>
-        <h1>TurnKey LAMP</h1>
+        <h1>TurnKey OwnTracks</h1>
         
         <div id="container-1">
             <ul>
@@ -46,7 +46,10 @@
                         $_SERVER{'HTTP_HOST'}; ?>:12322"><img
                         src="images/phpmyadmin.png"/>PHPMyAdmin</a>
                     </div>
-                    <div></div>
+                    <div>
+                        <a href="owntracks/"><img
+                        src="images/owntracks.png"/>OwnTracks</a>
+		    </div>
                     <div></div>
 
                     <h2>Resources and references</h2>
