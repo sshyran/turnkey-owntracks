@@ -16,7 +16,9 @@ which openssl >/dev/null || fatal "openssl is not installed"
 # generate CA certificate
 
 test -d /etc/mosquitto/owntracks  || mkdir -p /etc/mosquitto/owntracks
-TARGET=/etc/mosquitto/owntracks  MOSQUITTOUSER=mosquitto /usr/local/owntracks/repo/TLS/generate-CA.sh mqttitude
+TARGET=/etc/mosquitto/owntracks  MOSQUITTOUSER=mosquitto /usr/local/owntracks/tools/TLS/generate-CA.sh mqttitude
 # chown mosquitto /etc/mosquitto/owntracks/*
 
 sleep 3
+
+chown -R mosquitto /var/log/mosquitto/

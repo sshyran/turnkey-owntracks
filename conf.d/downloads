@@ -27,10 +27,11 @@ DEBIAN_FRONTEND=noninteractive apt-get --force-yes --assume-yes install \
 
 easy_install supervisor
 
-mkdir -p /usr/local/owntracks/repo
-git clone https://github.com/owntracks/backend.git /usr/local/owntracks/repo
-git clone https://github.com/owntracks/tools.git /usr/local/owntracks/repo
-cd /usr/local/owntracks && ln -s repo/m2s m2s
+mkdir -p /usr/local/owntracks/backend
+git clone https://github.com/owntracks/backend.git /usr/local/owntracks/backend
+mkdir -p /usr/local/owntracks/tools
+git clone https://github.com/owntracks/tools.git /usr/local/owntracks/tools
+cd /usr/local/owntracks && ln -s backend/m2s m2s
 
 # Get pip
 easy_install pip

@@ -28,6 +28,7 @@ autosave_interval 1800
 connection_messages true
 log_dest stderr
 log_dest topic
+log_dest file /var/log/mosquitto/mosquitto.log
 log_type error
 log_type warning
 log_type notice
@@ -52,9 +53,9 @@ listener 1883 127.0.0.1
 
 listener 8883
 tls_version tlsv1
-cafile /etc/mosquitto/mqttitude/ca.crt
-certfile /etc/mosquitto/mqttitude/mqttitude.crt
-keyfile /etc/mosquitto/mqttitude/mqttitude.key
+cafile /etc/mosquitto/owntracks/ca.crt
+certfile /etc/mosquitto/owntracks/mqttitude.crt
+keyfile /etc/mosquitto/owntracks/mqttitude.key
 require_certificate false
 
 !EOFmosquitto
