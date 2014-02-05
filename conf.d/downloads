@@ -33,6 +33,9 @@ mkdir -p /usr/local/owntracks/tools
 git clone https://github.com/owntracks/tools.git /usr/local/owntracks/tools
 cd /usr/local/owntracks && ln -s backend/m2s m2s
 
+mkdir -p /usr/local/owntracks/wss
+git clone https://github.com/owntracks/wss-static.git /usr/local/owntracks/wss
+
 # Get pip
 easy_install pip
 # http://stackoverflow.com/questions/20905350/latest-pip-fails-with-requires-setuptools-0-8-for-dist-info
@@ -41,3 +44,8 @@ pip install setuptools --no-use-wheel --upgrade
 pip install flask-peewee
 
 insserv supervisord
+
+# Clone HiveMQ MQTT client
+git clone https://github.com/hivemq/hivemq-mqtt-web-client.git /var/www/hivemq-mqtt-web-client
+
+# 
