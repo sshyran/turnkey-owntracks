@@ -19,8 +19,6 @@ test -d /etc/mosquitto/owntracks  || mkdir -p /etc/mosquitto/owntracks
 TARGET=/etc/mosquitto/owntracks  MOSQUITTOUSER=mosquitto /usr/local/owntracks/tools/TLS/generate-CA.sh mqttitude
 # chown mosquitto /etc/mosquitto/owntracks/*
 
-sleep 3
-
 chown -R mosquitto /var/log/mosquitto/
 
 # Copy default settings for m2s
