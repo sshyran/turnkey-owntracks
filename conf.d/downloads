@@ -34,7 +34,8 @@ git clone https://github.com/owntracks/tools.git /usr/local/owntracks/tools
 cd /usr/local/owntracks && ln -s backend/m2s m2s
 
 mkdir -p /usr/local/owntracks/wss
-git clone https://github.com/owntracks/wss-static.git /usr/local/owntracks/wss
+### git clone https://github.com/owntracks/wss-static.git /usr/local/owntracks/wss
+cd /usr/local/owntracks/wss && curl -o WSS https://raw2.github.com/owntracks/WSS/tls/WSS_static_x86_Linux && chmod +x WSS
 
 # Get pip
 easy_install pip
