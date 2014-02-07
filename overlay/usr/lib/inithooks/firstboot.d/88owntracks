@@ -26,9 +26,8 @@ chown -R mosquitto /var/log/mosquitto/
 test -f /usr/local/owntracks/m2s/settings.py || cp /usr/local/owntracks/default/m2s-settings.py /usr/local/owntracks/m2s/settings.py
 
 
-# Install modified mqttws31.js and create config.js for HiveMQ
+# Create config.js for HiveMQ
 
-install -b /var/www/owntracks/js/mqttws31.js /var/www/hivemq-mqtt-web-client/js/mqttws31.js
 (
 	ipaddr=$(/sbin/ifconfig |
 		grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' |
