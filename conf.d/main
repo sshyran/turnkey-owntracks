@@ -57,6 +57,7 @@ pid_file /var/run/mosquitto.pid
 
 retained_persistence true
 
+# bound to 0.0.0.0
 listener 1883
 
 listener 8883
