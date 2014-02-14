@@ -91,6 +91,7 @@ require_certificate false
 #  |_| |_| |_|\___/|___/\__, |\__,_|_|\__|\__\___(_) .__/ \_/\_/  
 #                          |_|                     |_|            
 
+# @@@ Warning: populated at first boot!
 
 cat > /etc/mosquitto/mosquitto.pw <<!EOFmosquittopw
 !EOFmosquittopw
@@ -104,8 +105,19 @@ chmod 600 /etc/mosquitto/mosquitto.pw
 #  |_| |_| |_|\___/|___/\__, |\__,_|_|\__|\__\___(_)__,_|\___|_|
 #                          |_|                                  
 
+# @@@ Warning: user populated at first boot is appended to this file
 
 cat > /etc/mosquitto/mosquitto.acl <<!EOFmosquittoacl
+# Allow anonymous clients access to this topic
+topic write test/#
+
+# Allow possible bridge status notifications to work
+pattern write $SYS/broker/connection/%c/state
+
+# Authenticated users
+# user jjolie
+# topic write owntracks/jjolie/#
+
 !EOFmosquittoacl
 chown mosquitto /etc/mosquitto/mosquitto.acl
 chmod 600 /etc/mosquitto/mosquitto.acl

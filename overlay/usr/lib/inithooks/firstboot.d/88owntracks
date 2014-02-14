@@ -10,6 +10,11 @@ fatal() {
     exit 1
 }
 
+# Get username/password for Mosquitto
+
+[ -e $INITHOOKS_CONF ] && . $INITHOOKS_CONF
+$INITHOOKS_PATH/bin/owntrackspw.py --username="$APP_USER" --pass="$APP_PASS"
+
 # Exit if openssl is not available
 which openssl >/dev/null || fatal "openssl is not installed"
 
