@@ -57,7 +57,7 @@ pid_file /var/run/mosquitto.pid
 
 retained_persistence true
 
-listener 1883 127.0.0.1
+listener 1883
 
 listener 8883
 tls_version tlsv1
